@@ -1,3 +1,4 @@
+
 import modal from '../components/Modal'
 
 
@@ -28,6 +29,10 @@ class CreatePage {
         //button[text()="Cadastrar"]
         cy.contains('button', 'Cadastrar').click()
     }
+
+
+
+class CreatePage {
 
 }
 
