@@ -22,6 +22,8 @@
   //     .should('be.visible')
   //     .should('have.text', `Olá, ${name}`)
   // })
+import loginPage from './pages/Login';
+import mapPage from "./pages/Map";
 
   //DELETA ANTES DA MASSA DE TESTE SER EXECUTADA DENTRO DA SUITE DE TESTE DE CADASTRO COM SUCESSO
   Cypress.Commands.add('apiResetUser', (instagram) => {
@@ -35,7 +37,6 @@
   })
 
   //POST E DELETE PARA CADASTRO DUPLICADO
-
   Cypress.Commands.add('apiCreateUser', (payload) => {
     
     cy.apiResetUser(payload.instagram)
@@ -47,4 +48,19 @@
     }).then(response => {
       expect(response.status).to.eql(201)
     })
+  })
+
+  // LOGIM NA UI
+  Cypress.Commands.add('uiLogin', (user) => {
+    loginPage.go()
+    loginPage.form(user)
+    loginPage.submit()
+
+    mapPage.loggedUser(user.name)
+  })
+
+  //Geolocalização
+  Cypress.Commands.add('setGeolocation', (lat, long) => {
+    localStorage.setItem('qtruck:latitude', lat)
+    localStorage.setItem('qtruck:latitude', long)
   })
