@@ -26,6 +26,25 @@
   import loginPage from './pages/Login';
   import mapPage from "./pages/Map";
 
+
+// FAZER LOGIN NA API
+  Cypress.Commands.add('apiLogin', (user)=> {
+
+    const payload = {
+        instagram: user.instagram,
+        password: user.password
+    }
+
+    cy.request({
+        url: 'http://localhost:3333/sessions',
+        method: 'POST',
+        body: payload
+    }).then(response=> {
+        expect(response.status).to.eql(200)
+        Cypress.env('token', response.body.token)
+    })
+})
+
   //DELETA ANTES DA MASSA DE TESTE SER EXECUTADA DENTRO DA SUITE DE TESTE DE CADASTRO COM SUCESSO
   Cypress.Commands.add('apiResetUser', (instagram) => {
     cy.request({
@@ -50,6 +69,20 @@
       expect(response.status).to.eql(201)
     })
   })
+
+  // CRIA UMA FOODTRUCK
+  Cypress.Commands.add('apiCreateFoodTruck', (payload)=> {
+    cy.request({
+        url: 'http://localhost:3333/foodtrucks',
+        method: 'POST',
+        headers: {
+            'Authorization': Cypress.env('token')
+        },
+        body: payload
+    }).then(response => {
+        expect(response.status).to.eql(201)
+    })
+})
 
     //LOGIN NA UI
     Cypress.Commands.add('uiLogin', (user)=> {
