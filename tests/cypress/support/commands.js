@@ -22,6 +22,8 @@
   //     .should('be.visible')
   //     .should('have.text', `Olá, ${name}`)
   // })
+import loginPage from './pages/Login';
+import mapPage from "./pages/Map";
 
   import loginPage from './pages/Login';
   import mapPage from "./pages/Map";
