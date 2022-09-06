@@ -25,9 +25,6 @@
 import loginPage from './pages/Login';
 import mapPage from "./pages/Map";
 
-  import loginPage from './pages/Login';
-  import mapPage from "./pages/Map";
-
 
 // FAZER LOGIN NA API
   Cypress.Commands.add('apiLogin', (user)=> {
@@ -88,7 +85,7 @@ import mapPage from "./pages/Map";
 
     //LOGIN NA UI
     Cypress.Commands.add('uiLogin', (user)=> {
-      loginPage.go()
+      loginPage.go('-23.584548837854058', '-46.674446913517876')
       loginPage.form(user)
       loginPage.submit()
   
