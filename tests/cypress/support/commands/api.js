@@ -1,3 +1,6 @@
+const API_URL = Cypress.env('apiUrl')
+
+
 // FAZER LOGIN NA API
 Cypress.Commands.add('apiLogin', (user) => {
 
@@ -7,7 +10,7 @@ Cypress.Commands.add('apiLogin', (user) => {
     }
 
     cy.request({
-        url: 'http://localhost:3333/sessions',
+        url: API_URL + '/sessions',
         method: 'POST',
         body: payload
     }).then(response => {
@@ -20,7 +23,7 @@ Cypress.Commands.add('apiLogin', (user) => {
 Cypress.Commands.add('apiResetUser', (instagram) => {
     cy.request({
         method: 'DELETE',
-        url: 'http://localhost:3333/helpers-reset',
+        url: API_URL + '/helpers-reset',
         qs: { instagram: instagram }
     }).then(response => {
         expect(response.status).to.eql(204)
@@ -34,7 +37,7 @@ Cypress.Commands.add('apiCreateUser', (payload) => {
 
     cy.request({
         method: 'POST',
-        url: 'http://localhost:3333/signup',
+        url: API_URL + '/signup',
         body: payload
     }).then(response => {
         expect(response.status).to.eql(201)
@@ -44,7 +47,7 @@ Cypress.Commands.add('apiCreateUser', (payload) => {
 // CRIA UMA FOODTRUCK
 Cypress.Commands.add('apiCreateFoodTruck', (payload) => {
     cy.request({
-        url: 'http://localhost:3333/foodtrucks',
+        url: API_URL + '/foodtrucks',
         method: 'POST',
         headers: {
             'Authorization': Cypress.env('token')
