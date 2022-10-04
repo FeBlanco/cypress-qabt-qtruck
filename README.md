@@ -34,7 +34,7 @@ ou  no modo headless
  - Validando Textos
  - Conhecendo a aplicação do Qtruck (Backeend e Frontend)
  - Automatizar Mapa
- - Mock e Intercepts
+ - Mock
  - Realizando asserts
  - Criando comandos personalizados
  - Relatorio de testes com Allure
